@@ -1,0 +1,46 @@
+Rewards Points System Setup Instructions
+=======================================
+
+1. Import the Database
+----------------------
+* Locate `database/schema.sql` in this project.
+* Import it into your MySQL server:
+  ```bash
+  mysql -u root -p < database/schema.sql
+  ```
+* The script will create the `rewards_system` database, tables, sample data, and a default superadmin user.
+
+2. Configure the Application
+----------------------------
+* Edit `config.php` with your MySQL credentials (`$dbHost`, `$dbUser`, `$dbPass`, `$dbName`).
+* By default the application expects the `rewards_system` database defined in the schema.
+
+3. Default Login
+----------------
+* Username: `admin`
+* Password: `admin123`
+* Role: `superadmin`
+* Change the default password immediately after your first login via **Profile**.
+
+4. Running the App
+------------------
+* Place the project in your PHP-capable web server directory (Apache, Nginx, Laragon, XAMPP, etc.).
+* Ensure PHP 8.1+ is installed with the mysqli extension enabled.
+* Serve the project root (`rewards-app/`).
+* Navigate to `/login.php` for the admin portal or `/index.php` for the in-store customer kiosk.
+
+5. Security Recommendations
+---------------------------
+* Use HTTPS and a strong MySQL password in production.
+* Update the default admin credentials.
+* Regularly review the **Activity Log** (visible to superadmins) for unusual events.
+* Configure proper file permissions so that configuration files are not publicly editable.
+* Keep PHP and all dependencies patched.
+
+6. Cron & Maintenance (Optional)
+--------------------------------
+* Schedule a cron job to archive or prune old activity logs and password reset tokens.
+* Back up the database regularly.
+* Consider adding rate limiting and CAPTCHA to the login and reset password flows if exposed publicly.
+
+Enjoy the rewards system and customize it as needed for your business.
